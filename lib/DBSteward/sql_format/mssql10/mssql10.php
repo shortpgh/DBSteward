@@ -456,6 +456,10 @@ class mssql10 {
   public static function get_quoted_object_name($name) {
     return sql99::get_quoted_name($name, dbsteward::$quote_object_names, self::QUOTE_CHAR);
   }
+  
+  public static function get_fully_qualified_table_name($schema_name, $table_name) {
+    return sql99::get_fully_qualified_table_name($schema_name, $table_name);
+  }
 }
 
 ?>
