@@ -865,14 +865,14 @@ class mssql10_diff_tables extends pgsql8_diff_tables {
     }
   }
 
-  protected function table_data_row_deleted($row) {
+  protected static function table_data_row_deleted($row) {
     if ( isset($row['delete']) && strcasecmp($row['delete'], 'true') == 0 ) {
       return true;
     }
     return false;
   }
 
-  protected static function get_data_row_delete($db_doc, $schema, $table, $data_row_columns, $data_row, &$sql) {
+  protected static function get_data_row_delete($schema, $table, $data_row_columns, $data_row, &$sql) {
     $sql = sprintf(
       "DELETE FROM %s.%s WHERE (%s);\n",
       mssql10::get_quoted_schema_name($schema['name']), mssql10::get_quoted_table_name($table['name']),

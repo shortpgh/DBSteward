@@ -83,7 +83,7 @@ class mssql10_table extends sql99_table {
    *
    * @return string
    */
-  public function get_constraint_sql($constraint) {
+  public static function get_constraint_sql($constraint) {
     if (!is_array($constraint)) {
       throw new exception("constraint is not an array?");
     }

@@ -57,7 +57,7 @@ class mssql10_function extends pgsql8_function {
    *
    * @return created SQL
    */
-  public function get_drop_sql($node_schema, $node_function) {
+  public static function get_drop_sql($node_schema, $node_function) {
     $declaration = self::get_declaration($node_schema, $node_function);
     $declaration = str_ireplace("character varying", "varchar", $declaration);
     $declaration = str_ireplace("varying", "varchar", $declaration);
@@ -78,7 +78,7 @@ class mssql10_function extends pgsql8_function {
    *
    * @param $node_function
    */
-  public static function get_declaration($node_schema, $node_function) {
+  public static function get_declaration($node_schema, $node_function, $include_names = TRUE) {
     $r = mssql10::get_quoted_schema_name($node_schema['name']) . '.' . mssql10::get_quoted_function_name($node_function['name']) . '(';
     $parameters = dbx::get_function_parameters($node_function);
     foreach ($parameters AS $parameter) {

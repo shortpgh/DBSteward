@@ -83,7 +83,7 @@ class mssql10 {
     return $db_doc;
   }
 
-  public function build_schema($db_doc, $ofs, $table_depends) {
+  public static function build_schema($db_doc, $ofs, $table_depends) {
     // explicitly create the ROLE_APPLICATION
     // webservers connect as a user granted this role
     $ofs->write("CREATE ROLE " . $db_doc->database->role->application . ";\n");
@@ -204,7 +204,7 @@ class mssql10 {
     // @TODO: database configurationParameter support needed ?
   }
 
-  public function build_data($db_doc, $ofs, $tables) {
+  public static function build_data($db_doc, $ofs, $tables) {
     // use the dependency order to then write out the actual data inserts into the data sql file
     $tables_count = count($tables);
     $limit_to_tables_count = count(dbsteward::$limit_to_tables);

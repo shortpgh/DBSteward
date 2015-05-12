@@ -49,7 +49,7 @@ class mssql10_schema extends sql99_schema {
    *
    * @return true if schema contains function with given $declaration, otherwise false
    */
-  public function contains_function($node_schema, $declaration) {
+  public static function contains_function($node_schema, $declaration) {
     $found = FALSE;
 
     foreach (dbx::get_functions($node_schema) as $node_function) {
