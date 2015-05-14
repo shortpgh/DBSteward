@@ -48,6 +48,12 @@ class mssql10_function extends pgsql8_function {
       $grant_sql = mssql10_permission::get_sql(dbsteward::$new_database, $node_schema, $node_function, $permission);
       $sql .= $grant_sql . "\n";
     }
+    
+    //'CREATE FUNCTION/PROCEDURE' must be the first statement in a query batch.
+    // Put GO before those statement solves this problem.
+    // http://www.sql-server-helper.com/error-messages/msg-111-create-function.aspx
+
+    $sql = "GO\n" . $sql;
 
     return $sql;
   }
